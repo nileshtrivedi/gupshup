@@ -1,6 +1,0 @@
-For more information on SMS GupShup product, see http://enterprise.smsgupshup.com
-For more information on gupshup gem, see http://github.com/nileshtrivedi
-
-
-
-

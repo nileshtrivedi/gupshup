@@ -1,32 +1,37 @@
 = gupshup
 
-* http://github.com/#{github_username}/#{project_name}
+* http://github.com/nileshtrivedi/smsgupshup
 
 == DESCRIPTION:
 
-FIX (describe your package)
+gupshup is a ruby wrapper for the HTTP APIs provided by SMS GupShup which
+is a Group SMS Platform for the enterprises with advanced features such as
+masks, keywords, text/flash/vcard/bulk messages, advertising and keyword
+campaigns and so on.
 
-== FEATURES/PROBLEMS:
+== FEATURES:
 
-* FIX (list of features or problems)
+* V 0.0.1 send_message is implemented.
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+  gup = Gupshup::Client.new('your_gupshup_login','password')
+  gup.send_message('sms message text',target_phone_number)
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* uri, cgi, http
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem sources -a http://gems.github.com
+* sudo gem install gupshup
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME full name
+Copyright (c) 2009 Nilesh Trivedi
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

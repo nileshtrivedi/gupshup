@@ -46,5 +46,9 @@ module Gupshup
     def send_flash_message(msg,number)
       send_message(msg,number,'FLASH')
     end
+
+    def send_text_message(msg,number)
+      send_message(msg,number,'TEXT')
+    end
   end
 end

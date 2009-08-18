@@ -7,7 +7,7 @@ require 'cgi'
 
 module Gupshup
   VERSION = '0.0.1'
-  class Client
+  class Enterprise
     def initialize(login,password)
       @api_url = 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
       @api_params = {}
@@ -17,10 +17,10 @@ module Gupshup
       @api_params[:auth_scheme] = 'PLAIN'
     end
 
-    def send_message(msg,number)
+    def send_message(msg,number,msg_type = 'TEXT')
       msg_params = {}
       msg_params[:method] = 'sendMessage'
-      msg_params[:msg_type] = 'TEXT'
+      msg_params[:msg_type] = msg_type
       msg_params[:msg] = msg.to_s
       msg_params[:send_to] = CGI.escape(number.to_i.to_s)
       url = URI.parse(@api_url)
@@ -41,6 +41,10 @@ module Gupshup
         success = false
       end
       return success    
+    end
+
+    def send_flash_message(msg,number)
+      send_message(msg,number,'FLASH')
     end
   end
 end

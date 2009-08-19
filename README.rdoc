@@ -11,12 +11,14 @@ campaigns and so on.
 
 == FEATURES:
 
+* V 0.0.5 send_text_message and send_flash_message are implemented
 * V 0.0.1 send_message is implemented.
 
 == SYNOPSIS:
 
-  gup = Gupshup::Client.new('your_gupshup_login','password')
-  gup.send_message('sms message text',target_phone_number)
+  gup = Gupshup::Enterprise.new('your_gupshup_login','password')
+  gup.send_text_message('sms message text',target_phone_number)
+  gup.send_flash_message('sms message text',target_phone_number)
 
 == REQUIREMENTS:
 

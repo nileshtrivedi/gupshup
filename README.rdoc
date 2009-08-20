@@ -11,7 +11,7 @@ campaigns and so on.
 
 == FEATURES:
 
-* V 0.0.6 send_vcard and send_unicode_message implemented. Error checking.
+* V 0.1.0 send_vcard and send_unicode_message implemented. Error checking.
 * V 0.0.5 send_text_message and send_flash_message are implemented
 * V 0.0.1 send_message is implemented.
 

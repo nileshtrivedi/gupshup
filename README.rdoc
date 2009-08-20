@@ -20,6 +20,8 @@ campaigns and so on.
   gup = Gupshup::Enterprise.new('your_gupshup_login','password')
   gup.send_text_message('sms message text',target_phone_number)
   gup.send_flash_message('sms message text',target_phone_number)
+  gup.send_vcard(vcard,target_phone_number)
+  gup.send_unicode_message(unicode_message_in_utf8_encoding,target_phone_number)
 
 == REQUIREMENTS:
 

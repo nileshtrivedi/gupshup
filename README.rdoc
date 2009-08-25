@@ -26,6 +26,7 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.doc
   gup.send_vcard(vcard,target_phone_number)
   gup.send_unicode_message(unicode_message_in_utf8_encoding,target_phone_number)
 
+ target_phone_number should be a 12 digit India mobile number starting with "919"
 == REQUIREMENTS:
 
 * uri, cgi, http

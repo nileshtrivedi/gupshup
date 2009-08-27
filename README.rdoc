@@ -20,13 +20,24 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.doc
 
 == USAGE:
 
-  gup = Gupshup::Enterprise.new('your_gupshup_login','password')
-  gup.send_text_message('sms message text',target_phone_number)
-  gup.send_flash_message('sms message text',target_phone_number)
-  gup.send_vcard(vcard,target_phone_number)
-  gup.send_unicode_message(unicode_message_in_utf8_encoding,target_phone_number)
+  # "target_phone_number" should be a 12 digit Indian mobile number starting with "919" (either integer or string)
 
- target_phone_number should be a 12 digit India mobile number starting with "919"
+  gup = Gupshup::Enterprise.new('your_gupshup_login','password')
+
+  #send a normal text message
+  gup.send_text_message('sms message text',target_phone_number)
+
+  #flash messages appear on mobile's screen immediately but may not be saved on some handsets
+  gup.send_flash_message('sms message text',target_phone_number)
+
+  #send a contact in VCARD format
+  vcard = "BEGIN:VCARD\r\nVERSION:1.2\r\nN:ICICI\r\nTEL:18002098888\r\nEND:VCARD"
+  gup.send_vcard(vcard,target_phone_number)
+
+  #send a non-english message with a hex-encoded UTF-8 string
+  gup.send_unicode_message("\xE0\xA4\x97\xE0\xA4\xAA\xE0\xA4\xB6\xE0\xA4\xAA",target_phone_number) # will send "gupshup" in Devnagari script
+
+
 == REQUIREMENTS:
 
 * uri, cgi, http

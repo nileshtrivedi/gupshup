@@ -25,12 +25,11 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<hoe>, [">= 2.3.3"])
+      s.add_runtime_dependency(%q<httpclient>, [">= 2.1.5.2"])
     else
-      s.add_dependency(%q<hoe>, [">= 2.3.3"])
+      s.add_dependency(%q<httpclient>, [">= 2.1.5.2"])
     end
   else
-    s.add_dependency(%q<hoe>, [">= 2.3.3"])
-    s.add_dependency(%q<httpclient>)
+    s.add_dependency(%q<httpclient>, [">= 2.1.5.2"])
   end
 end

@@ -4,9 +4,10 @@ $:.unshift(File.dirname(__FILE__)) unless
 require 'net/http'
 require 'uri'
 require 'cgi'
+require 'httpclient'
 
 module Gupshup
-  VERSION = '0.1.0'
+  VERSION = '0.1.2'
   class Enterprise
     def initialize(login,password)
       @api_url = 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
@@ -65,6 +66,18 @@ module Gupshup
 
     def send_unicode_message(msg,number,opts = {})
       send_message(msg,number,:UNICODE_TEXT,opts)
+    end
+
+    def bulk_file_upload(file_path,file_type = 'csv',mime_type = 'text/csv', opts = {})
+      msg_params = {}
+      msg_params[:method] = 'xlsUpload'
+      msg_params[:filetype] = file_type.to_s
+      file = File.new(file_path,"r")
+      def file.mime_type; "text/csv"; end
+      msg_params[:xlsFile] = file
+      resp = HTTPClient.post(@api_url,msg_params.merge(@api_params).merge(opts))
+      file.close
+      puts resp.body.content
     end
   end
 end

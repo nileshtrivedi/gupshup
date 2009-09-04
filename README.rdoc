@@ -14,6 +14,7 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.doc
 
 == FEATURES:
 
+* V 0.1.2 Bulk file upload implemented. Only CSV format supported for now.
 * V 0.1.0 send_vcard and send_unicode_message implemented. Error checking.
 * V 0.0.5 send_text_message and send_flash_message are implemented
 * V 0.0.1 send_message is implemented.
@@ -37,10 +38,12 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.doc
   #send a non-english message with a hex-encoded UTF-8 string
   gup.send_unicode_message("\xE0\xA4\x97\xE0\xA4\xAA\xE0\xA4\xB6\xE0\xA4\xAA",target_phone_number) # will send "gupshup" in Devnagari script
 
+  #Upload a CSV file for bulk messages
+  gup.bulk_file_upload(file_path)
 
 == REQUIREMENTS:
 
-* uri, cgi, http
+* httpclient
 
 == INSTALL:
 

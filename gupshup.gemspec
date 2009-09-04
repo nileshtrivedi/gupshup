@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gupshup}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nilesh Trivedi"]
-  s.date = %q{2009-08-17}
+  s.date = %q{2009-09-05}
   s.description = %q{Ruby wrapper for SMSGupShup API}
   s.email = ["nilesh.tr@gmail.com"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt"]
@@ -31,5 +31,6 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<hoe>, [">= 2.3.3"])
+    s.add_dependency(%q<httpclient>)
   end
 end

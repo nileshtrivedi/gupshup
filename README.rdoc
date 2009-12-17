@@ -47,8 +47,7 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.doc
 
 == INSTALL:
 
- sudo gem sources -a http://gems.github.com
- sudo gem install nileshtrivedi-gupshup
+ sudo gem install gupshup
 
 == LICENSE:
 

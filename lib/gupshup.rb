@@ -9,13 +9,18 @@ require 'httpclient'
 module Gupshup
   VERSION = '0.1.2'
   class Enterprise
-    def initialize(login,password)
+    def initialize(login,password, token = nil)
       @api_url = 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
       @api_params = {}
       @api_params[:userid] = login
       @api_params[:password] = password
       @api_params[:v] = '1.1'
       @api_params[:auth_scheme] = 'PLAIN'
+      if token
+        @api_params[:auth_scheme] = 'TOKEN'
+        @api_params[:token] = token
+        @api_params.delete(:password)
+      end
     end
 
     def send_message(msg,number,msg_type = 'TEXT',opts = {})

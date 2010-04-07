@@ -7,19 +7,15 @@ require 'cgi'
 require 'httpclient'
 
 class NilClass
-  unless defined? :blank?
-    def blank?
-      true
-    end
-  end
+  def blank?
+    true
+  end unless nil.respond_to? :blank?
 end
 
 class String
-  unless defined? :blank?
-    def blank?
-      self.empty?
-    end
-  end
+  def blank?
+    self !~ /\S/
+  end unless "".respond_to? :blank?
 end
 
 module Gupshup

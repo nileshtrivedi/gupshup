@@ -7,22 +7,26 @@ require 'cgi'
 require 'httpclient'
 
 class NilClass
-  def blank?
-    true
+  unless defined? :blank?
+    def blank?
+      true
+    end
   end
 end
 
 class String
-  def blank?
-    self.empty?
+  unless defined? :blank?
+    def blank?
+      self.empty?
+    end
   end
 end
 
 module Gupshup
-  VERSION = '0.1.5'
+  VERSION = '0.2.0'
   class Enterprise
     def initialize(opts)
-      @api_url = 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
+      @api_url = opts[:api_url] || 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
       @api_params = {}
       @api_params[:userid] = opts[:userid]
       @api_params[:password] = opts[:password]
@@ -45,13 +49,14 @@ module Gupshup
       puts "GupShup Response: #{resp}"
 
       case res
-      when Net::HTTPSuccess, Net::HTTPRedirection
+      when Net::HTTPSuccess
         if resp.nil? || resp.include?("success") == false
-          raise "API call '#{opts[:method]}' failed: #{resp}"
+          puts "API call '#{opts[:method]}' failed: #{resp}"
+          return false, resp
         end
-        return true
+        return true, nil
       else
-        raise 'GupShup returned HTTP Error'
+        return false, "HTTP Error : #{res}"
       end
     end
 
@@ -60,11 +65,11 @@ module Gupshup
       number = opts[:send_to]
       msg_type = opts[:msg_type] || 'TEXT'
       
-      raise 'Phone Number is too short' if number.to_s.length < 12
-      raise 'Phone Number is too long' if number.to_s.length > 12
-      #raise 'Phone Number should start with "91"' if number.to_s.start_with? "91"
-      raise 'Phone Number should be numerical value' unless number.to_i.to_s == number.to_s
-      raise 'Message should be less than 725 characters long' if msg.to_s.length > 724
+      return (false, 'Phone Number is too short') if number.to_s.length < 12
+      return (false, 'Phone Number is too long') if number.to_s.length > 12
+      #return (false, 'Phone Number should start with "91"') if number.to_s.start_with? "91"
+      return (false, 'Phone Number should be numerical value') unless number.to_i.to_s == number.to_s
+      return (false, 'Message should be less than 725 characters long') if msg.to_s.length > 724
       call_api opts.merge({ :method => 'sendMessage' })
     end
 
@@ -97,9 +102,9 @@ module Gupshup
     end
     
     def group_post(opts)
-      raise "Invalid group name" if opts[:group_name].blank?
-      raise "Invalid message" if opts[:msg].blank?
-      raise "Invalid message type" if opts[:msg_type].blank?
+      return (false,"Invalid group name") if opts[:group_name].blank?
+      return (false,"Invalid message") if opts[:msg].blank?
+      return (false,"Invalid message type") if opts[:msg_type].blank?
       call_api opts.merge({:method => 'post_group'})
     end
   end

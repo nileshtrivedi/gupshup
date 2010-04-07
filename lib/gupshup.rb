@@ -23,7 +23,7 @@ class String
 end
 
 module Gupshup
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
   class Enterprise
     def initialize(opts)
       @api_url = opts[:api_url] || 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
@@ -65,11 +65,11 @@ module Gupshup
       number = opts[:send_to]
       msg_type = opts[:msg_type] || 'TEXT'
       
-      return (false, 'Phone Number is too short') if number.to_s.length < 12
-      return (false, 'Phone Number is too long') if number.to_s.length > 12
-      #return (false, 'Phone Number should start with "91"') if number.to_s.start_with? "91"
-      return (false, 'Phone Number should be numerical value') unless number.to_i.to_s == number.to_s
-      return (false, 'Message should be less than 725 characters long') if msg.to_s.length > 724
+      return false, 'Phone Number is too short' if number.to_s.length < 12
+      return false, 'Phone Number is too long' if number.to_s.length > 12
+      #return false, 'Phone Number should start with "91"' if number.to_s.start_with? "91"
+      return false, 'Phone Number should be numerical value' unless number.to_i.to_s == number.to_s
+      return false, 'Message should be less than 725 characters long' if msg.to_s.length > 724
       call_api opts.merge({ :method => 'sendMessage' })
     end
 
@@ -102,9 +102,9 @@ module Gupshup
     end
     
     def group_post(opts)
-      return (false,"Invalid group name") if opts[:group_name].blank?
-      return (false,"Invalid message") if opts[:msg].blank?
-      return (false,"Invalid message type") if opts[:msg_type].blank?
+      return false,"Invalid group name" if opts[:group_name].blank?
+      return false,"Invalid message" if opts[:msg].blank?
+      return false,"Invalid message type" if opts[:msg_type].blank?
       call_api opts.merge({:method => 'post_group'})
     end
   end

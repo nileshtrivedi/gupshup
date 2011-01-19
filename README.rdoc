@@ -14,7 +14,7 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
 
 == FEATURES:
 
-* V 0.2.0 Return boolean status instead of raising expectations. API_URL is now configurable.
+* V 0.2.0 Return boolean status instead of raising exceptions. API_URL is now configurable.
 * V 0.1.5 Added group_post method and a generic call_api method. All methods
     now expect a hash of API params instead if individual arguments
 * V 0.1.2 Bulk file upload implemented. Only CSV format supported for now.

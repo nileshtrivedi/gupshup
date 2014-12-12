@@ -15,8 +15,7 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
 == FEATURES:
 
 * V 0.2.0 Return boolean status instead of raising exceptions. API_URL is now configurable.
-* V 0.1.5 Added group_post method and a generic call_api method. All methods
-    now expect a hash of API params instead if individual arguments
+* V 0.1.5 Added group_post method and a generic call_api method. All methods now expect a hash of API params instead if individual arguments
 * V 0.1.2 Bulk file upload implemented. Only CSV format supported for now.
 * V 0.1.0 send_vcard and send_unicode_message implemented. Error checking.
 * V 0.0.5 send_text_message and send_flash_message are implemented
@@ -24,22 +23,22 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
 
 == USAGE:
 
-  # "target_phone_number" should be a 12 digit Indian mobile number starting with "919" (either integer or string)
+  # "target_phone_number" should be a 12 digit Indian mobile number starting with "91" (either integer or string)
 
   gup = Gupshup::Enterprise.new(:userid => 'your_gupshup_login', :password => 'your_password')
 
   #send a normal text message
-  gup.send_text_message(:msg => 'sms message text', :send_to => '919xxxxxxxxx')
+  gup.send_text_message(:msg => 'sms message text', :send_to => '91xxxxxxxxxx')
 
   #flash messages appear on mobile's screen immediately but may not be saved on some handsets
-  gup.send_flash_message(:msg => 'sms message text', :send_to => '919xxxxxxxxx')
+  gup.send_flash_message(:msg => 'sms message text', :send_to => '91xxxxxxxxxx')
 
   #send a contact in VCARD format
   vcard = "BEGIN:VCARD\r\nVERSION:1.2\r\nN:ICICI\r\nTEL:18002098888\r\nEND:VCARD"
-  gup.send_vcard(:msg => vcard, :send_to => '919xxxxxxxxx')
+  gup.send_vcard(:msg => vcard, :send_to => '91xxxxxxxxxx')
 
   #send a non-english message with a hex-encoded UTF-8 string
-  gup.send_unicode_message(:msg => "\xE0\xA4\x97\xE0\xA4\xAA\xE0\xA4\xB6\xE0\xA4\xAA", :send_to => '919xxxxxxxxx') # will send "gupshup" in Devnagari script
+  gup.send_unicode_message(:msg => "\xE0\xA4\x97\xE0\xA4\xAA\xE0\xA4\xB6\xE0\xA4\xAA", :send_to => '91xxxxxxxxxx') # will send "gupshup" in Devnagari script
 
   #Upload a CSV file for bulk messages
   gup.bulk_file_upload(file_path)

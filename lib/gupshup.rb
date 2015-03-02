@@ -55,7 +55,7 @@ module Gupshup
         return false, "HTTP Error : #{res}"
       end
     end
-pu
+
     def send_message(opts)
       msg = opts[:msg]
       number = opts[:send_to]

@@ -94,7 +94,7 @@ module Gupshup
       msg_params[:xlsFile] = file
       resp = HTTPClient.post(@api_url,msg_params.merge(@api_params).merge(opts))
       file.close
-      puts resp.body.content
+      p resp.body
     end
     
     def group_post(opts)

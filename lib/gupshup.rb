@@ -50,7 +50,7 @@ module Gupshup
           puts "API call '#{opts[:method]}' failed: #{resp}"
           return false, resp
         end
-        return true, nil
+        return true, resp
       else
         return false, "HTTP Error : #{res}"
       end

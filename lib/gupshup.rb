@@ -74,7 +74,7 @@ module Gupshup
     end
 
     def send_text_message(opts)
-      send_message(opts.merge({ :msg_type => 'TEXT'}))
+      send_message(opts.merge({ :msg_type => 'TEXT',:mask=>'TMSTPL'}))
     end
 
     def send_vcard(opts)
